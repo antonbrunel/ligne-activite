@@ -1,0 +1,60 @@
+/* La ligne d'activité. Deux jetons à définir, le reste s'en déduit :
+
+     --activite-teinte   la couleur des jours actifs
+     --activite-creux    la couleur des jours sans commit
+
+   Ni boîte ni bordure : la ligne épouse la page. Elle remplace bien un
+   border-top de pied de page. */
+/* Les valeurs par défaut vivent dans les fallbacks de var(), pas dans une
+   déclaration sur .activite : sinon un parent qui pose --activite-teinte serait
+   masqué par l'élément lui-même. */
+.activite {
+  position: relative;
+  margin: 0 0 1.5rem;
+  height: 12px;
+}
+
+.activite svg {
+  display: block;
+  height: 12px;
+  overflow: visible;
+  transition: clip-path 1s cubic-bezier(.22, 1, .36, 1);
+}
+
+/* Avant l'entrée à l'écran, la ligne est masquée par la droite : elle s'allume
+   de gauche à droite quand la classe est-allumee arrive. */
+.activite:not(.est-allumee) svg { clip-path: inset(0 100% 0 0); }
+
+.activite rect { transition: opacity .15s ease; }
+
+/* Les cinq paliers. La couleur seule fait l'effet : ni bordure, ni taille
+   variable, ni étiquette. */
+.activite .a0 { fill: color-mix(in srgb, var(--activite-creux, #8a8f99) 16%, transparent); }
+.activite .a1 { fill: color-mix(in srgb, var(--activite-teinte, #c98a2b) 42%, transparent); }
+.activite .a2 { fill: color-mix(in srgb, var(--activite-teinte, #c98a2b) 64%, transparent); }
+.activite .a3 { fill: color-mix(in srgb, var(--activite-teinte, #c98a2b) 84%, transparent); }
+.activite .a4 { fill: var(--activite-teinte, #c98a2b); }
+
+/* Au survol, la barre visée reste pleine, les autres reculent. */
+.activite.est-survolee rect { opacity: .4; }
+.activite.est-survolee rect.est-visee { opacity: 1; }
+
+.activite-bulle {
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, -100%);
+  padding: .34rem .6rem;
+  border-radius: 4px;
+  pointer-events: none;
+  white-space: nowrap;
+  font-size: .7rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--activite-bulle-texte, #14161a);
+  background: var(--activite-bulle-fond, #f4f1ea);
+  box-shadow: 0 8px 22px rgba(15, 23, 42, .22);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .activite svg, .activite rect { transition: none; }
+}

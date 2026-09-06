@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ligne d'activité</title>
+<link rel="stylesheet" href="../ligne-activite.css">
+<style>
+  :root { color-scheme: dark; }
+  body {
+    margin: 0; padding: 4rem 1.5rem; background: #0f1115; color: #f4f1ea;
+    font: 15px/1.65 Georgia, serif;
+  }
+  main { max-width: 38rem; margin: 0 auto; }
+  h1 { font-size: 1.5rem; margin: 0 0 .4rem; }
+  p { color: #8a8f99; margin: 0 0 2.5rem; }
+  section { margin: 0 0 3.5rem; }
+  h2 { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: #8a8f99; margin: 0 0 .9rem; font-family: system-ui, sans-serif; }
+  .statut { font-size: .78rem; color: #8a8f99; font-family: system-ui, sans-serif; }
+  .vert { --activite-teinte: #4ba36b; }
+  .bleu { --activite-teinte: #4b86c9; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Ligne d'activité</h1>
+  <p>Une barre par jour, du premier au dernier commit. Survole une barre.</p>
+
+  <section>
+    <h2>Dépôt court, 21 jours</h2>
+    <figure class="activite" data-debut="2026-06-01" data-jours="0,3,7,2,0,0,1,14,9,4,0,0,0,6,11,2,1,0,0,3,8" role="img" aria-label="Activité du dépôt, une barre par jour du 1er juin au 21 juin 2026."></figure>
+    <div class="statut"><span class="activite-dernier">dernier commit le 21 juin 2026</span> · <span class="activite-total">71 commits</span></div>
+  </section>
+
+  <section class="vert">
+    <h2>Dépôt long, 400 jours, les barres se touchent</h2>
+    <figure class="activite" data-debut="2025-08-04" data-jours="0,0,0,4,1,1,0,0,4,3,0,0,2,4,2,5,0,0,1,3,3,0,0,0,0,1,0,3,0,10,0,0,10,5,11,2,0,0,0,7,13,1,4,2,0,0,5,2,5,0,7,0,0,0,0,0,1,1,0,0,3,2,1,1,1,0,1,9,1,0,0,2,0,0,0,0,0,0,0,0,0,1,1,2,2,10,0,0,5,1,9,0,0,1,0,3,0,3,0,1,2,0,1,0,11,0,0,0,2,0,3,0,0,1,0,0,2,4,7,0,0,0,1,0,3,3,0,1,1,0,4,4,6,0,0,0,0,2,0,0,0,0,0,0,2,0,0,2,0,0,5,2,0,0,0,0,0,2,0,0,0,0,0,0,2,11,3,2,0,1,0,0,5,5,0,2,0,0,1,2,0,0,0,0,0,0,1,0,0,16,3,1,0,1,3,0,0,4,0,1,5,0,1,2,0,0,0,2,3,2,8,0,0,0,4,5,4,11,1,0,0,0,2,0,2,6,1,0,0,0,5,1,5,0,0,1,0,5,1,1,0,0,4,11,9,1,0,4,0,4,1,6,1,0,0,0,5,2,9,0,0,0,0,5,10,0,2,7,0,0,12,0,0,2,4,0,0,4,0,6,7,0,0,0,2,0,1,0,0,0,1,4,1,1,1,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,4,0,0,0,0,0,0,11,5,0,0,7,0,0,0,3,0,3,0,0,0,0,0,2,0,2,0,0,9,0,0,0,1,0,0,3,0,0,0,0,0,0,1,3,0,1,0,0,0,5,8,0,4,0,0,0,4,1,0,4,7,0,0,1,8,0,0,9,0,0,1,1,2,0,4,0,0,1,0,0,2,1,4,0,10,1,11,10" role="img" aria-label="Activité du dépôt, une barre par jour du 4 août 2025 au 7 septembre 2026 : 680 commits, 181 jours avec au moins un commit."></figure>
+    <div class="statut"><span class="activite-dernier">dernier commit le 7 septembre 2026</span> · <span class="activite-total">680 commits</span></div>
+  </section>
+
+  <section class="bleu">
+    <h2>Deux dépôts fusionnés, 45 jours</h2>
+    <figure class="activite" data-debut="2026-03-02" data-jours="4,0,0,9,17,6,2,0,0,3,11,22,8,1,0,0,5,14,7,0,0,2,19,10,3,0,0,0,6,13,4,1,0,0,8,16,5,2,0,0,9,12,3,0,7" role="img" aria-label="Activité de deux dépôts sur 45 jours."></figure>
+    <div class="statut"><span class="activite-dernier">dernier commit le 15 avril 2026</span></div>
+  </section>
+
+  <section>
+    <h2>Ce dépôt, pour de vrai</h2>
+    <figure class="activite" data-cible="soi"></figure>
+    <div class="statut">Remplie par <code>node activite.mjs</code>, rafraîchie chaque lundi.</div>
+  </section>
+</main>
+<script src="../ligne-activite.js"></script>
+</body>
+</html>

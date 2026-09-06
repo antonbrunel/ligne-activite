@@ -1,0 +1,37 @@
+# Chaque lundi, relire les dépôts et pousser les lignes si elles ont bougé.
+# Le secret ACTIVITE_TOKEN est un jeton fine-grained, Contents en lecture seule.
+# Sans lui, seuls les dépôts publics se lisent.
+name: activite
+on:
+  schedule:
+    - cron: '20 5 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: activite
+  cancel-in-progress: false
+jobs:
+  rafraichir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Relire les dépôts et réécrire les pages
+        env:
+          ACTIVITE_TOKEN: ${{ secrets.ACTIVITE_TOKEN }}
+        run: node activite.mjs
+      - name: Commit et push s'il y a du nouveau
+        run: |
+          git add -u
+          if git diff --cached --quiet; then
+            echo "Rien de nouveau."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(activite): les lignes au $(date -u +%Y-%m-%d)"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

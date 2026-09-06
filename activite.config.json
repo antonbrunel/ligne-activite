@@ -1,0 +1,14 @@
+{
+  "_doc": "Une cible = une page à remplir et les dépôts qui la nourrissent. Plusieurs dépôts sont fusionnés par jour. « local » sert à --local, pour essayer sans réseau.",
+  "langue": "fr",
+  "dernier": "dernier commit le {date}",
+  "total": "{total} commits",
+  "aria": "Activité du dépôt, une barre par jour du {debut} au {fin} : {total} commits, {actifs} jours avec au moins un commit.",
+  "cibles": {
+    "demo": {
+      "fichier": "demo/index.html",
+      "marque": "soi",
+      "depots": ["antonbrunel/ligne-activite"]
+    }
+  }
+}
